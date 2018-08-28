@@ -1,0 +1,21 @@
+
+syntax = "proto3";
+
+package browser.example;
+
+import "testdata/common/common.proto";
+
+service ContactMessagesService {
+  rpc Foo(FooRequest) returns (browser.common.Empty) {}
+  rpc Bar(BarRequest) returns (browser.common.Empty) {}
+}
+
+message FooRequest {
+  string name = 1;
+  string email = 2;
+}
+
+message BarRequest {
+  int32 increments = 1;
+  bool trying = 2;
+}

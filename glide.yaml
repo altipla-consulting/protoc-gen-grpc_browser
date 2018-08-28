@@ -1,0 +1,8 @@
+package: .
+import:
+- package: github.com/golang/protobuf
+  version: ^1.2.0
+  subpackages:
+  - proto
+  - protoc-gen-go/descriptor
+  - protoc-gen-go/plugin

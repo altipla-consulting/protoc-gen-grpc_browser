@@ -1,0 +1,8 @@
+
+syntax = "proto3";
+
+package browser.common;
+
+option go_package = "github.com/altipla-consulting/protoc-gen-grpc_browser/testdata/common";
+
+message Empty {}
