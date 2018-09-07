@@ -6,3 +6,6 @@ import:
   - proto
   - protoc-gen-go/descriptor
   - protoc-gen-go/plugin
+- package: google.golang.org/genproto
+  subpackages:
+  - googleapis/api/annotations
