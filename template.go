@@ -8,6 +8,8 @@ type templateData struct {
 	Proto          *descriptor.FileDescriptorProto
 	Version        string
 	SourceFilename string
+	Methods        map[string]string
+	URLs           map[string]string
 }
 
 func (data *templateData) Quote() string {
@@ -26,12 +28,12 @@ module.exports = class {{.GetName}}Client {
   }
   {{range .GetMethod}}
   {{.GetName}}(req) {
-    return this._call('{{.GetName}}', req);
+    return this._call('{{index $.Methods .GetName}}', {{$.Quote}}{{index $.URLs .GetName}}{{$.Quote}}, req);
   }
   {{end}}
-  _call(method, req) {
+  _call(method, url, req) {
     let opts = {
-      method: 'POST',
+      method,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -40,7 +42,7 @@ module.exports = class {{.GetName}}Client {
     if (this.authorization) {
       opts.headers.Authorization = this.authorization;
     }
-    return fetch({{$.Quote}}${this.server}/{{$.Proto.Package}}.{{$serviceName}}/${method}{{$.Quote}}, opts)
+    return fetch({{$.Quote}}${this.server}/${url}{{$.Quote}}, opts)
       .then(response => {
         if (response.status !== 200) {
           let err = new Error(response.statusText);
