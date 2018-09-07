@@ -4,10 +4,20 @@ syntax = "proto3";
 package browser.example;
 
 import "testdata/common/common.proto";
+import "google/api/annotations.proto";
 
 service ContactMessagesService {
-  rpc Foo(FooRequest) returns (browser.common.Empty) {}
-  rpc Bar(BarRequest) returns (browser.common.Empty) {}
+  rpc Foo(FooRequest) returns (browser.common.Empty) {
+    option (google.api.http) = {
+      get: "/contact-messages/foo"
+    };
+  }
+  rpc Bar(BarRequest) returns (browser.common.Empty) {
+    option (google.api.http) = {
+      post: "/contact-messages/bar/{param}"
+      body: "*"
+    };
+  }
 }
 
 message FooRequest {
