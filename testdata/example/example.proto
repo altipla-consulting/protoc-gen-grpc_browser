@@ -14,7 +14,7 @@ service ContactMessagesService {
   }
   rpc Bar(BarRequest) returns (browser.common.Empty) {
     option (google.api.http) = {
-      post: "/contact-messages/bar/{param}"
+      post: "/contact-messages/bar/{param_url}"
       body: "*"
     };
   }
