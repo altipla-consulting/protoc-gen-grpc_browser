@@ -94,7 +94,7 @@ func (method *Method) Binding() string {
 		if !strings.HasPrefix(segment, "{") {
 			segments = append(segments, segment)
 		} else {
-			segments = append(segments, "$"+stringcase.ToCamelCase(segment))
+			segments = append(segments, "${req."+stringcase.ToCamelCase(segment[1:]))
 		}
 	}
 
