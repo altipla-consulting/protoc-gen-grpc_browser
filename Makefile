@@ -7,7 +7,7 @@ gofmt:
 
 test:
 	go install .
-	protoc --grpc_browser_out=tmp -I. ./testdata/example/example.proto
+	protoc --grpc_browser_out=tmp -I ~/projects/googleapis -I. ./testdata/example/example.proto
 	@echo '--- output ---'
 	@cat tmp/testdata/example/example.js
 	@echo '--- output ---'
