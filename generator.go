@@ -44,10 +44,13 @@ func (g *generator) generateFile(file *descriptor.FileDescriptorProto) (*plugin.
 	}
 
 	data := &templateData{
-		Proto:          file,
 		Version:        Version,
 		SourceFilename: file.GetName(),
 	}
+	for _, service := range file.GetService() {
+		data.Services = append(data.Services, &Service{service})
+	}
+	
 	if err = tmpl.Execute(buffer, data); err != nil {
 		return nil, fmt.Errorf("rendering template for %s: %s", file.GetName(), err)
 	}
