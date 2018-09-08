@@ -1,5 +1,5 @@
-hash: 56866ff99abd1fa03f084659f1e4cd9c3bbf2961419f910f5f1bbaf2af465a9d
-updated: 2018-09-07T12:40:41.258223013Z
+hash: 6c23ea2f5305f7d4c0e49e14f24f53f3d1c28d28c722110c23f95c728e1cb9eb
+updated: 2018-09-08T18:10:33.890019592Z
 imports:
 - name: github.com/golang/protobuf
   version: aa810b61a9c79d51363740d207bb46cf8e620ed5
@@ -7,6 +7,21 @@ imports:
   - proto
   - protoc-gen-go/descriptor
   - protoc-gen-go/plugin
+- name: github.com/reiver/go-stringcase
+  version: b80b3ac9fc374235d9f59d294a7c70ab5f53fdbf
+- name: github.com/reiver/go-whitespace
+  version: a4e7344b204998a43f4778c5bddadcbde2230306
+- name: github.com/sirupsen/logrus
+  version: f3df9aeffda7c12bd9f5a03f9251d75d35993165
+- name: golang.org/x/crypto
+  version: 0709b304e793a5edb4a2c0145f281ecdc20838a4
+  subpackages:
+  - ssh/terminal
+- name: golang.org/x/sys
+  version: 917fdcba135dcbaccd57425db91723541b4427c8
+  subpackages:
+  - unix
+  - windows
 - name: google.golang.org/genproto
   version: 11092d34479b07829b72e10713b159248caf5dad
   subpackages:
