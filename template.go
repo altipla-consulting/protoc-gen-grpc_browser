@@ -122,7 +122,7 @@ module.exports = class {{.GetName}}Client {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(req || {}),
+      body: method === 'POST' || method === 'PUT' ? JSON.stringify(req || {}) : undefined,
     };
     if (this.authorization) {
       opts.headers.Authorization = this.authorization;
