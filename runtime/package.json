@@ -1,0 +1,12 @@
+{
+  "name": "@altipla/grpc-browser",
+  "version": "0.1.0",
+  "description": "JS code generator for the JSON <-> GRPC transcoder.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/altipla-consulting/protoc-gen-grpc_browser.git"
+  },
+  "author": "Altipla Consulting",
+  "license": "MIT"
+}

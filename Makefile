@@ -11,3 +11,7 @@ test:
 	@echo '--- output ---'
 	@cat tmp/testdata/example/example.js
 	@echo '--- output ---'
+
+deploy-npm:
+	cd runtime
+	npm publish --access public
