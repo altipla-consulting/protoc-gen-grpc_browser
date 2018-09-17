@@ -13,5 +13,4 @@ test:
 	@echo '--- output ---'
 
 deploy-npm:
-	cd runtime
-	npm publish --access public
+	cd runtime; npm publish --access public
