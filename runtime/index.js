@@ -1,6 +1,11 @@
 
 const url = require('url');
 
+let fetchFn = global.fetch;
+if (!fetchFn) {
+  fetchFn = require('node-fetch');
+}
+
 
 class Caller {
   constructor({server = '', authorization = '', hook = null} = {}) {
@@ -30,7 +35,7 @@ class Caller {
       opts.headers.Authorization = this.authorization;
     }
 
-    return fetch(url.format(endpoint), opts)
+    return fetchFn(url.format(endpoint), opts)
       .then(response => {
         // TODO(ernesto): Leer los errores GRPC aquí.
         if (response.status !== 200) {
