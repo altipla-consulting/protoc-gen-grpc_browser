@@ -74,7 +74,6 @@ func (method *Method) Path() string {
 	}
 	opts := ext.(*pbannotations.HttpRule)
 
-	var path string
 	switch rule := opts.GetPattern().(type) {
 	case *pbannotations.HttpRule_Get:
 		return rule.Get
