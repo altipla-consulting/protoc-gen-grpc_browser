@@ -1,5 +1,6 @@
 
 const url = require('url');
+const unset = require('lodash/unset');
 
 let fetchFn = global.fetch;
 if (!fetchFn) {
@@ -14,9 +15,15 @@ class Caller {
     this.hook = hook;
   }
 
-  send(method, path, req, hasBody) {
-    let endpoint = url.parse(this.server + path);
+  send(method, binding, req, hasBody, path) {
+    let endpoint = url.parse(this.server + binding);
     delete endpoint.search;
+
+    path.split('/').forEach(segment => {
+      if (segment.startWith('{')) {
+        unset(req, segment.substring(1, segment.length - 1));
+      }
+    });
 
     let opts = {
       method,
