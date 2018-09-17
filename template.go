@@ -67,7 +67,7 @@ func (method *Method) HTTPMethod() string {
 	return ""
 }
 
-func (method *Method) Binding() string {
+func (method *Method) Path() string {
 	ext, err := proto.GetExtension(method.Options, pbannotations.E_Http)
 	if err != nil {
 		panic(err)
@@ -77,20 +77,24 @@ func (method *Method) Binding() string {
 	var path string
 	switch rule := opts.GetPattern().(type) {
 	case *pbannotations.HttpRule_Get:
-		path = rule.Get
+		return rule.Get
 
 	case *pbannotations.HttpRule_Put:
-		path = rule.Put
+		return rule.Put
 
 	case *pbannotations.HttpRule_Post:
-		path = rule.Post
+		return rule.Post
 
 	case *pbannotations.HttpRule_Delete:
-		path = rule.Delete
+		return rule.Delete
 	}
 
+	panic("http rule has no path")
+}
+
+func (method *Method) Binding() string {
 	segments := []string{}
-	for _, segment := range strings.Split(path, "/") {
+	for _, segment := range strings.Split(method.Path(), "/") {
 		if !strings.HasPrefix(segment, "{") {
 			segments = append(segments, segment)
 		} else {
@@ -119,12 +123,11 @@ const grpc = require('@altipla/grpc-browser');
 {{range .Services}}
 module.exports = class {{.GetName}}Client {
   constructor(opts = {}) {
-  	this._caller = grpc.Caller(opts);
-  }
-  {{range .Methods}}{{if .HTTPMethod}}
+  	this._caller = new grpc.Caller(opts);
+  }{{range .Methods}}{{if .HTTPMethod}}
 
   {{.GetName}}(req) {
-  	return this._caller.send('{{.HTTPMethod}}', {{$.Quote}}{{.Binding}}{{$.Quote}}, req, {{.HasBody}});
+  	return this._caller.send('{{.HTTPMethod}}', {{$.Quote}}{{.Binding}}{{$.Quote}}, req, {{.HasBody}}, '{{.Path}}');
   }{{end}}{{end}}
 };
 {{end}}
