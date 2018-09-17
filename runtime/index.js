@@ -20,7 +20,7 @@ class Caller {
     delete endpoint.search;
 
     path.split('/').forEach(segment => {
-      if (segment.startWith('{')) {
+      if (segment.startsWith('{')) {
         unset(req, segment.substring(1, segment.length - 1));
       }
     });
