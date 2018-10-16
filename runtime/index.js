@@ -46,7 +46,7 @@ class Caller {
     return fetchFn(url.format(endpoint), opts)
       .then(response => {
         if (response.status !== 200) {
-          let code = response.headers.get('grpc-code');
+          let code = response.headers.get('grpc-status');
           let message = response.headers.get('grpc-message');
           if (code) {
             throw new GrpcError(code, message);
