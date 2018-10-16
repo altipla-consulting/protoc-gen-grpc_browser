@@ -36,7 +36,7 @@ class Caller {
     if (hasBody) {
       opts.body = JSON.stringify(req || {});
     } else {
-      endpoint.query = flat(req);
+      endpoint.query = req ? flat(req) : {};
     }
 
     if (this.authorization) {
