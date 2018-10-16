@@ -12,10 +12,17 @@ service ContactMessagesService {
       get: "/contact-messages/foo"
     };
   }
+
   rpc Bar(BarRequest) returns (browser.common.Empty) {
     option (google.api.http) = {
       post: "/contact-messages/bar/{param}"
       body: "*"
+    };
+  }
+
+  rpc Subquery(SubqueryRequest) returns (browser.common.Empty) {
+    option (google.api.http) = {
+      get: "/contact-messages/foo"
     };
   }
 }
@@ -28,4 +35,14 @@ message FooRequest {
 message BarRequest {
   int32 increments = 1;
   bool trying = 2;
+}
+
+message SubqueryRequest {
+  Date date = 1;
+}
+
+message Date {
+  int32 day = 1;
+  int32 month = 2;
+  int32 year = 3;
 }

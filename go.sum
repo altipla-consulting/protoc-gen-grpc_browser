@@ -1,0 +1,15 @@
+github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/golang/protobuf v1.2.0 h1:P3YflyNX/ehuJFLhxviNdFxQPkGK5cDcApsge1SqnvM=
+github.com/golang/protobuf v1.2.0/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
+github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
+github.com/reiver/go-stringcase v0.0.0-20150131170254-b80b3ac9fc37 h1:UoJ0v+lfkegdrLGEnALjzfNCPA6H457qcrLk9RW4HsE=
+github.com/reiver/go-stringcase v0.0.0-20150131170254-b80b3ac9fc37/go.mod h1:GJn4IEegyIXqZVjCYblIccno1QdVZ4v0IAgKWqtPzKg=
+github.com/reiver/go-whitespace v0.0.0-20180712163502-a4e7344b2049 h1:I7A5mucm5+ffare2CBR+J27mf3Du1OB2gTKq5wfC0YM=
+github.com/reiver/go-whitespace v0.0.0-20180712163502-a4e7344b2049/go.mod h1:sJJrL83SlvhKTkFke2C7T8Zq5JgiLS344l28c4RLUyc=
+github.com/sirupsen/logrus v0.0.0-20180908091816-f3df9aeffda7/go.mod h1:h+Z+/iirzwDrfRNqYsqe6j43skgUCHhE3BIO0QA5h+A=
+github.com/stretchr/testify v1.2.2/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXfy6kDkUVs=
+golang.org/x/crypto v0.0.0-20180904163835-0709b304e793/go.mod h1:6SG95UA2DQfeDnfUPMdvaQW0Q7yPrPDi9nlGo2tz2b4=
+golang.org/x/sys v0.0.0-20180905080454-ebe1bf3edb33/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
+golang.org/x/sys v0.0.0-20180907202204-917fdcba135d/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
+google.golang.org/genproto v0.0.0-20180831171423-11092d34479b h1:lohp5blsw53GBXtLyLNaTXPXS9pJ1tiTw61ZHUoE9Qw=
+google.golang.org/genproto v0.0.0-20180831171423-11092d34479b/go.mod h1:JiN7NxoALGmiZfu7CAH4rXhgtRTLTxftemlI0sWmxmc=

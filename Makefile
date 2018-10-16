@@ -6,6 +6,7 @@ gofmt:
 	@gofmt -r '&a{} -> new(a)' -w $(FILES)
 
 test:
+	@mkdir -p tmp
 	go install .
 	protoc --grpc_browser_out=tmp -I ~/projects/googleapis -I. ./testdata/example/example.proto
 	@echo '--- output ---'
