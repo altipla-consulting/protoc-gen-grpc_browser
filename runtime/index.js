@@ -77,38 +77,38 @@ class GrpcError {
 
 class StatusCode {
   // OK is returned on success.
-  static OK = 0;
+  static get OK() { return 0; }
 
   // Canceled indicates the operation was canceled (typically by the caller).
-  static Canceled = 1;
+  static get Canceled() { return 1; }
 
   // Unknown error. An example of where this error may be returned is
   // if a Status value received from another address space belongs to
   // an error-space that is not known in this address space. Also
   // errors raised by APIs that do not return enough error information
   // may be converted to this error.
-  static Unknown = 2;
+  static get Unknown() { return 2; }
 
   // InvalidArgument indicates client specified an invalid argument.
   // Note that this differs from FailedPrecondition. It indicates arguments
   // that are problematic regardless of the state of the system
   // (e.g., a malformed file name).
-  static InvalidArgument = 3;
+  static get InvalidArgument() { return 3; }
 
   // DeadlineExceeded means operation expired before completion.
   // For operations that change the state of the system, this error may be
   // returned even if the operation has completed successfully. For
   // example, a successful response from a server could have been delayed
   // long enough for the deadline to expire.
-  static DeadlineExceeded = 4;
+  static get DeadlineExceeded() { return 4; }
 
   // NotFound means some requested entity (e.g., file or directory) was
   // not found.
-  static NotFound = 5;
+  static get NotFound() { return 5; }
 
   // AlreadyExists means an attempt to create an entity failed because one
   // already exists.
-  static AlreadyExists = 6;
+  static get AlreadyExists() { return 6; }
 
   // PermissionDenied indicates the caller does not have permission to
   // execute the specified operation. It must not be used for rejections
@@ -116,11 +116,11 @@ class StatusCode {
   // instead for those errors). It must not be
   // used if the caller cannot be identified (use Unauthenticated
   // instead for those errors).
-  static PermissionDenied = 7;
+  static get PermissionDenied() { return 7; }
 
   // ResourceExhausted indicates some resource has been exhausted, perhaps
   // a per-user quota, or perhaps the entire file system is out of space.
-  static ResourceExhausted = 8;
+  static get ResourceExhausted() { return 8; }
 
   // FailedPrecondition indicates operation was rejected because the
   // system is not in a state required for the operation's execution.
@@ -141,7 +141,7 @@ class StatusCode {
   //      REST Get/Update/Delete on a resource and the resource on the
   //      server does not match the condition. E.g., conflicting
   //      read-modify-write on the same resource.
-  static FailedPrecondition = 9;
+  static get FailedPrecondition() { return 9; }
 
   // Aborted indicates the operation was aborted, typically due to a
   // concurrency issue like sequencer check failures, transaction aborts,
@@ -149,7 +149,7 @@ class StatusCode {
   //
   // See litmus test above for deciding between FailedPrecondition,
   // Aborted, and Unavailable.
-  static Aborted = 10;
+  static get Aborted() { return 10; }
 
   // OutOfRange means operation was attempted past the valid range.
   // E.g., seeking or reading past end of file.
@@ -166,16 +166,16 @@ class StatusCode {
   // error) when it applies so that callers who are iterating through
   // a space can easily look for an OutOfRange error to detect when
   // they are done.
-  static OutOfRange = 11;
+  static get OutOfRange() { return 11; }
 
   // Unimplemented indicates operation is not implemented or not
   // supported/enabled in this service.
-  static Unimplemented = 12;
+  static get Unimplemented() { return 12; }
 
   // Internal errors. Means some invariants expected by underlying
   // system has been broken. If you see one of these errors,
   // something is very broken.
-  static Internal = 13;
+  static get Internal() { return 13; }
 
   // Unavailable indicates the service is currently unavailable.
   // This is a most likely a transient condition and may be corrected
@@ -183,14 +183,14 @@ class StatusCode {
   //
   // See litmus test above for deciding between FailedPrecondition,
   // Aborted, and Unavailable.
-  static Unavailable = 14;
+  static get Unavailable() { return 14; }
 
   // DataLoss indicates unrecoverable data loss or corruption.
-  static DataLoss = 15;
+  static get DataLoss() { return 15; }
 
   // Unauthenticated indicates the request does not have valid
   // authentication credentials for the operation.
-  static Unauthenticated = 16;
+  static get Unauthenticated() { return 16; }
 }
 
 
