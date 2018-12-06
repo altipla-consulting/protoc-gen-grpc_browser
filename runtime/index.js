@@ -49,7 +49,7 @@ class Caller {
           let code = response.headers.get('grpc-status');
           let message = response.headers.get('grpc-message');
           if (code) {
-            throw new GrpcError(code, message);
+            throw new GrpcError(parseInt(code, 10), message);
           }
 
           let err = new Error(response.statusText);
