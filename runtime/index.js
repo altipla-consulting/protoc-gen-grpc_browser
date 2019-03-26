@@ -2,6 +2,7 @@
 const url = require('url');
 const unset = require('lodash/unset');
 const flat = require('flat');
+const cloneDeep = require('lodash/cloneDeep');
 
 let fetchFn = global.fetch;
 if (!fetchFn) {
@@ -17,6 +18,8 @@ class Caller {
   }
 
   send(method, binding, req, hasBody, path) {
+    req = cloneDeep(req);
+    
     let endpoint = url.parse(this.server + binding);
     delete endpoint.search;
 
