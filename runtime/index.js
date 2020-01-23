@@ -52,7 +52,13 @@ class Caller {
           let code = response.headers.get('grpc-status');
           let message = response.headers.get('grpc-message');
           if (code) {
-            throw new GrpcError(parseInt(code, 10), message);
+            throw new GrpcError({
+              code: parseInt(code, 10), 
+              message,
+              method,
+              path: endpoint.path,
+              query: endpoint.query,
+            });
           }
 
           let err = new Error(response.statusText);
@@ -71,9 +77,12 @@ class Caller {
 
 
 class GrpcError {
-  constructor(code, message) {
-    this.code = code;
-    this.message = message;
+  constructor(error) {
+    this.code = error.code;
+    this.message = error.message;
+    this.method = error.method;
+    this.path = error.path;
+    this.query = error.query;
   }
 }
 
