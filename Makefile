@@ -1,8 +1,8 @@
 
-FILES = $(shell find . -type f -name "*.go" -not -path "./vendor/*")
+FILES = $(shell find . -type f -name '*.go')
 
 gofmt:
-	@gofmt -w $(FILES)
+	@gofmt -s -w $(FILES)
 	@gofmt -r '&a{} -> new(a)' -w $(FILES)
 
 test:
@@ -12,3 +12,8 @@ test:
 	@echo '--- output ---'
 	@cat tmp/testdata/example/example.js
 	@echo '--- output ---'
+
+update-deps:
+	go get -u
+	go mod download
+	go mod tidy
