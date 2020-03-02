@@ -14,7 +14,7 @@ import (
 	plugin "github.com/golang/protobuf/protoc-gen-go/plugin"
 )
 
-const Version = "1"
+const Version = "v1"
 
 func main() {
 	if err := run(); err != nil {
