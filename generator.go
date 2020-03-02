@@ -36,8 +36,6 @@ func (g *generator) Generate(req *plugin.CodeGeneratorRequest) (*plugin.CodeGene
 }
 
 func (g *generator) generateFile(file *descriptor.FileDescriptorProto) (*plugin.CodeGeneratorResponse_File, error) {
-	buffer := new(bytes.Buffer)
-
 	tmpl, err := template.New("file").Parse(browserTemplate)
 	if err != nil {
 		return nil, err
@@ -51,7 +49,8 @@ func (g *generator) generateFile(file *descriptor.FileDescriptorProto) (*plugin.
 		data.Services = append(data.Services, &Service{service})
 	}
 	
-	if err = tmpl.Execute(buffer, data); err != nil {
+	var buf bytes.Buffer
+	if err = tmpl.Execute(&buf, data); err != nil {
 		return nil, fmt.Errorf("rendering template for %s: %s", file.GetName(), err)
 	}
 
@@ -59,7 +58,7 @@ func (g *generator) generateFile(file *descriptor.FileDescriptorProto) (*plugin.
 	name = name[:len(name)-len(filepath.Ext(name))]
 	return &plugin.CodeGeneratorResponse_File{
 		Name:    proto.String(fmt.Sprintf("%s.js", name)),
-		Content: proto.String(buffer.String()),
+		Content: proto.String(buf.String()),
 	}, nil
 }
 
