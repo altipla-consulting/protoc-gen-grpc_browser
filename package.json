@@ -1,6 +1,6 @@
 {
   "name": "@altipla/grpc-browser",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "JS code generator for the JSON <-> GRPC transcoder.",
   "main": "runtime/index.js",
   "repository": {
