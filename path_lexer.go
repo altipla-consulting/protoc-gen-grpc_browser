@@ -10,7 +10,7 @@ import (
 
 const (
 	eof             = -1
-	charsURLSegment = "abcdefghijklmnopqrstuvwxyz0123456789-:_."
+	charsURLSegment = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-:_."
 	charsParam      = "abcdefghijklmnopqrstuvwxyz0123456789_"
 )
 
