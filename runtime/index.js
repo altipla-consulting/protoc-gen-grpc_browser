@@ -17,17 +17,18 @@ class Caller {
     this.hook = hook;
   }
 
-  send(method, binding, req, hasBody, path) {
+  send(method, binding, req, hasBody, unsetKeys) {
     req = cloneDeep(req);
     
+    // Build the full URL we will request with the host from the options
+    // and the path from the replaced bindings we receive.
+    // 
+    // We remove the search for later add the fields we want to it.
     let endpoint = url.parse(this.server + binding);
     delete endpoint.search;
 
-    path.split('/').forEach(segment => {
-      if (segment.startsWith('{')) {
-        unset(req, segment.substring(1, segment.length - 1));
-      }
-    });
+    // Remove from body all those fields present in the URL.
+    unsetKeys.forEach(key => unset(req, key));
 
     let opts = {
       method,
@@ -46,32 +47,31 @@ class Caller {
       opts.headers.Authorization = this.authorization;
     }
 
-    return fetchFn(url.format(endpoint), opts)
-      .then(response => {
-        if (response.status !== 200) {
-          let code = response.headers.get('grpc-status');
-          let message = response.headers.get('grpc-message');
-          if (code) {
-            throw new GrpcError({
-              code: parseInt(code, 10), 
-              message,
-              method,
-              path: endpoint.path,
-              query: endpoint.query,
-            });
-          }
-
-          let err = new Error(response.statusText);
-          err.response = response;
-          throw err;
+    return fetchFn(url.format(endpoint), opts).then(response => {
+      if (response.status !== 200) {
+        let code = response.headers.get('grpc-status');
+        let message = response.headers.get('grpc-message');
+        if (code) {
+          throw new GrpcError({
+            code: parseInt(code, 10), 
+            message,
+            method,
+            path: endpoint.path,
+            query: endpoint.query,
+          });
         }
 
-        if (this.hook) {
-          this.hook(response);
-        }
+        let err = new Error(response.statusText);
+        err.response = response;
+        throw err;
+      }
 
-        return response.json();
-      });
+      if (this.hook) {
+        this.hook(response);
+      }
+
+      return response.json();
+    });
   }
 }
 

@@ -25,6 +25,20 @@ service ContactMessagesService {
       get: "/contact-messages/foo"
     };
   }
+
+  rpc MultipleSlash(MultipleSlashRequest) returns (browser.common.Empty) {
+    option (google.api.http) = {
+      post: '/contact-messages/{name=contacts/*/bar/*}/foo'
+      body: '*'
+    };
+  }
+
+  rpc MultipleParams(MultipleParamsRequest) returns (browser.common.Empty) {
+    option (google.api.http) = {
+      post: '/{parent=projects/*}/{name=users/*}'
+      body: '*'
+    };
+  }
 }
 
 message FooRequest {
@@ -45,4 +59,13 @@ message Date {
   int32 day = 1;
   int32 month = 2;
   int32 year = 3;
+}
+
+message MultipleSlashRequest {
+  string name = 1;
+}
+
+message MultipleParamsRequest {
+  string parent = 1;
+  string name = 2;
 }
