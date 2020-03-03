@@ -103,29 +103,29 @@ const grpc = require('@altipla/grpc-browser');
 
 {{range .Services}}
 module.exports = class {{.GetName}}Client {
-	constructor(opts = {}) {
-		this._caller = new grpc.Caller(opts);
-	}{{range .Methods}}{{if .HTTPMethod}}
+  constructor(opts = {}) {
+    this._caller = new grpc.Caller(opts);
+  }{{range .Methods}}{{if .HTTPMethod}}
 
-	{{.GetName}}(req) {
-		{{$path := .Path -}}
-		{{range .Path.Segments -}}
-		{{with .Var -}}
-		{{if .Parts -}}
-		{
-			let parts = {{$.Quote}}{{.Binding}}{{$.Quote}}.split('/');
-			let fmt = {{$.Quote}}parameter req.{{.BindingName}} should have the format "{{.Format}}"{{$.Quote}};
-			if (parts.length !== {{len .Parts}}) { throw new Error(fmt); }
-			{{- range $i, $part := .Parts -}}{{if not (eq . "*")}}
-			if (parts[{{$i}}] !== '{{.}}') { throw new Error(fmt); }
-			{{- end -}}
-			{{end}}
-		}
-		{{end -}}
-		{{end -}}
-		{{end -}}
-		return this._caller.send('{{.HTTPMethod}}', {{$.Quote}}{{$path.Binding}}{{$.Quote}}, req, {{.HasBody}}, {{$path.UnsetKeys}});
-	}{{end}}{{end}}
+  {{.GetName}}(req) {
+    {{$path := .Path -}}
+    {{range .Path.Segments -}}
+    {{with .Var -}}
+    {{if .Parts -}}
+    {
+      let parts = {{$.Quote}}{{.Binding}}{{$.Quote}}.split('/');
+      let fmt = {{$.Quote}}parameter req.{{.BindingName}} should have the format "{{.Format}}"{{$.Quote}};
+      if (parts.length !== {{len .Parts}}) { throw new Error(fmt); }
+      {{- range $i, $part := .Parts -}}{{if not (eq . "*")}}
+      if (parts[{{$i}}] !== '{{.}}') { throw new Error(fmt); }
+      {{- end -}}
+      {{end}}
+    }
+    {{end -}}
+    {{end -}}
+    {{end -}}
+    return this._caller.send('{{.HTTPMethod}}', {{$.Quote}}{{$path.Binding}}{{$.Quote}}, req, {{.HasBody}}, {{$path.UnsetKeys}});
+  }{{end}}{{end}}
 };
 {{end}}
 `
