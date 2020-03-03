@@ -9,20 +9,20 @@ import "google/api/annotations.proto";
 service ContactMessagesService {
   rpc Foo(FooRequest) returns (browser.common.Empty) {
     option (google.api.http) = {
-      get: "/contact-messages/foo"
+      get: '/contact-messages/foo:bar'
     };
   }
 
   rpc Bar(BarRequest) returns (browser.common.Empty) {
     option (google.api.http) = {
-      post: "/contact-messages/bar/{param}"
-      body: "*"
+      post: '/contact-messages/bar/{param}'
+      body: '*'
     };
   }
 
   rpc Subquery(SubqueryRequest) returns (browser.common.Empty) {
     option (google.api.http) = {
-      get: "/contact-messages/foo"
+      get: '/contact-messages/foo'
     };
   }
 
@@ -36,6 +36,13 @@ service ContactMessagesService {
   rpc MultipleParams(MultipleParamsRequest) returns (browser.common.Empty) {
     option (google.api.http) = {
       post: '/{parent=projects/*}/{name=users/*}'
+      body: '*'
+    };
+  }
+
+  rpc PartialParam(browser.common.Empty) returns (browser.common.Empty) {
+    option (google.api.http) = {
+      post: '/contact-messages/bar/{param}:batchGet'
       body: '*'
     };
   }
