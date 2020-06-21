@@ -13,3 +13,4 @@ jobs:
     - uses: altipla-consulting/altipla.actions/go-release-1.14@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NAME: protoc-gen-grpc_browser
