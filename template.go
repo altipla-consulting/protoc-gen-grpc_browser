@@ -104,7 +104,7 @@ import { Caller } from '@altipla/grpc-browser';
 {{range .Services}}
 export default class {{.GetName}}Client {
   constructor(opts = {}) {
-    this._caller = new grpc.Caller(opts);
+    this._caller = new Caller(opts);
   }{{range .Methods}}{{if .HTTPMethod}}
 
   {{.GetName}}(req) {
