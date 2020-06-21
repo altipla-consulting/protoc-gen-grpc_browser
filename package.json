@@ -3,6 +3,7 @@
   "version": "0.3.4",
   "description": "JS code generator for the JSON <-> GRPC transcoder.",
   "main": "runtime/index.js",
+  "module": "runtime/index.esm.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/altipla-consulting/protoc-gen-grpc_browser.git"
@@ -16,6 +17,7 @@
     "url": "^0.11.0"
   },
   "files": [
-    "runtime/index.js"
+    "runtime/index.js",
+    "runtime/index.esm.js"
   ]
 }
