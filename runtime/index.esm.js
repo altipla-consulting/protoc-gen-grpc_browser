@@ -66,8 +66,8 @@ export class Caller {
           code: parseInt(code, 10), 
           message,
           method,
-          path: endpoint.path,
-          query: endpoint.query,
+          path: endpoint.pathname,
+          search: endpoint.search,
         });
       }
 
@@ -85,10 +85,12 @@ export class Caller {
 }
 
 
-export class GrpcError {
+export class GrpcError extends Error {
   constructor(error) {
+    super(`rpc error: code = ${error.code} desc = ${error.message}`)
+    this.name = 'GrpcError'
+
     this.code = error.code;
-    this.message = error.message;
     this.method = error.method;
     this.path = error.path;
     this.query = error.query;
