@@ -1,5 +1,5 @@
 
-import { cloneDeep, unset, isObject } from 'lodash-es';
+import { cloneDeep, unset, isObject, isFunction } from 'lodash-es';
 
 
 function flat(output, input, prefix = '') {
@@ -15,7 +15,7 @@ function flat(output, input, prefix = '') {
 
 
 export class Caller {
-  constructor({server = '', authorization = '', hook = null} = {}) {
+  constructor({server = '', authorization = null, hook = null} = {}) {
     this.server = server;
     this.authorization = authorization;
     this.hook = hook;
@@ -53,7 +53,7 @@ export class Caller {
     }
 
     if (this.authorization) {
-      opts.headers.Authorization = this.authorization;
+      opts.headers.Authorization = isFunction(this.authorization) ? this.authorization() : this.authorization;
     }
 
     let response = await window.fetch(endpoint.toString(), opts);
